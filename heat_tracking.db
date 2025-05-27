@@ -1,0 +1,20 @@
+-- فایل: heat_tracking.db (اسکریپت ایجاد پایگاه داده SQLite)
+
+-- جدول اطلاعات ذوب‌ها
+CREATE TABLE IF NOT EXISTS heats (
+    heat_id TEXT PRIMARY KEY,
+    start_time TEXT,
+    status TEXT,
+    position TEXT,
+    last_update TEXT
+);
+
+-- جدول رویدادهای ثبت‌شده برای هر ذوب
+CREATE TABLE IF NOT EXISTS events (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    heat_id TEXT,
+    event_type TEXT,
+    position TEXT,
+    timestamp TEXT,
+    FOREIGN KEY (heat_id) REFERENCES heats(heat_id)
+);
